@@ -1,0 +1,5 @@
+@EndUserText.label: 'Building Maintenance Request Service'
+define service ZBMR_SRV_22IT018 {
+  expose ZBMR_C_HDR_22IT018;
+  expose ZBMR_C_ITM_22IT018;
+}

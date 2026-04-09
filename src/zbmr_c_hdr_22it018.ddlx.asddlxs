@@ -1,0 +1,77 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Maintenance Request',
+    typeNamePlural: 'Maintenance Requests',
+    title: { type: #STANDARD, label: 'Request No', value: 'RequestNo' }
+  }
+}
+annotate entity ZBMR_C_HDR_22IT018 with
+{
+  @UI.facet: [
+    { id: 'RequestHeader', purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Request Details', position: 10 },
+    { id: 'RequestItems', purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Maintenance Items', position: 20,
+      targetElement: '_MaintItem' }
+  ]
+
+  @UI: { lineItem: [{position: 10, label: 'Request No'}],
+         identification: [{position: 10, label: 'Request No'}],
+         selectionField: [{position: 10}] }
+  RequestNo;
+
+  @UI: { lineItem: [{position: 20, label: 'Request Type'}],
+         identification: [{position: 20, label: 'Request Type'}],
+         selectionField: [{position: 20}] }
+  RequestType;
+
+  @UI: { lineItem: [{position: 30, label: 'Priority'}],
+         identification: [{position: 30, label: 'Priority'}],
+         selectionField: [{position: 30}] }
+  Priority;
+
+  @UI: { lineItem: [{position: 40, label: 'Location'}],
+         identification: [{position: 40, label: 'Location'}] }
+  Location;
+
+  @UI: { lineItem: [{position: 50, label: 'Building'}],
+         identification: [{position: 50, label: 'Building'}],
+         selectionField: [{position: 50}] }
+  Building;
+
+  @UI: { identification: [{position: 55, label: 'Floor'}] }
+  Floor;
+
+  @UI: { identification: [{position: 56, label: 'Room'}] }
+  Room;
+
+  @UI: { lineItem: [{position: 60, label: 'Description'}],
+         identification: [{position: 60, label: 'Description'}] }
+  Description;
+
+  @UI: { lineItem: [{position: 70, label: 'Status'}],
+         identification: [{position: 70, label: 'Status'}],
+         selectionField: [{position: 70}] }
+  Status;
+
+  @UI: { lineItem: [{position: 80, label: 'Requested By'}],
+         identification: [{position: 80, label: 'Requested By'}] }
+  RequestedBy;
+
+  @UI: { lineItem: [{position: 90, label: 'Est. Cost'}],
+         identification: [{position: 90, label: 'Est. Cost'}] }
+  EstimatedCost;
+
+  @UI: { lineItem: [{position: 100, label: 'Currency'}],
+         identification: [{position: 100, label: 'Currency'}] }
+  Currency;
+
+  @UI: { identification: [{position: 110, label: 'Created By'}] }
+  LocalCreatedBy;
+
+  @UI: { identification: [{position: 120, label: 'Created At'}] }
+  LocalCreatedAt;
+}

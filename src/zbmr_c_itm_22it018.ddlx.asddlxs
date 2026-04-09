@@ -1,0 +1,57 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Maintenance Item',
+    typeNamePlural: 'Maintenance Items',
+    title: { type: #STANDARD, label: 'Item No', value: 'ItemNumber' }
+  }
+}
+annotate entity ZBMR_C_ITM_22IT018 with
+{
+  @UI.facet: [
+    { id: 'ItemDetails', purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Item Details', position: 10 }
+  ]
+
+  @UI: { lineItem: [{position: 10, label: 'Request No'}],
+         identification: [{position: 10, label: 'Request No'}] }
+  RequestNo;
+
+  @UI: { lineItem: [{position: 20, label: 'Item No'}],
+         identification: [{position: 20, label: 'Item No'}] }
+  ItemNumber;
+
+  @UI: { lineItem: [{position: 30, label: 'Work Type'}],
+         identification: [{position: 30, label: 'Work Type'}] }
+  WorkType;
+
+  @UI: { lineItem: [{position: 40, label: 'Worker'}],
+         identification: [{position: 40, label: 'Worker'}] }
+  WorkerAssigned;
+
+  @UI: { lineItem: [{position: 50, label: 'Spare Part No'}],
+         identification: [{position: 50, label: 'Spare Part No'}] }
+  SparePartNo;
+
+  @UI: { identification: [{position: 60, label: 'Description'}] }
+  SpareDescription;
+
+  @UI: { lineItem: [{position: 70, label: 'Quantity'}],
+         identification: [{position: 70, label: 'Quantity'}] }
+  Quantity;
+
+  @UI.hidden: true
+  Uom;
+
+  @UI: { identification: [{position: 80, label: 'Item Cost'}] }
+  ItemCost;
+
+  @UI.hidden: true
+  Currency;
+
+  @UI.hidden: true  LocalCreatedBy;
+  @UI.hidden: true  LocalCreatedAt;
+  @UI.hidden: true  LocalLastChangedBy;
+  @UI.hidden: true  LocalLastChangedAt;
+}

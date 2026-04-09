@@ -1,0 +1,79 @@
+unmanaged implementation in class zbp_bmr_i_22it018 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZBMR_I_HDR_22IT018 alias MaintRequest
+  implementation in class zbp_bmr_hdr_22it018 unique
+  draft table zbmr_t_hdr
+  lock master total etag LocalLastChangedAt
+  authorization master ( instance )
+  etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory : create ) RequestNo;
+  field ( readonly  : update ) RequestNo;
+  field ( readonly )           LocalLastChangedAt;
+
+  association _MaintItem { create; with draft; }
+
+  mapping for zbmr_hdr_22it018 {
+    RequestNo           = requestno;
+    RequestType         = requesttype;
+    Priority            = priority;
+    Location            = location;
+    Building            = building;
+    Floor               = floor;
+    Room                = room;
+    Description         = description;
+    Status              = status;
+    RequestedBy         = requestedby;
+    EstimatedCost       = estimatedcost;
+    Currency            = currency;
+    LocalCreatedBy      = local_created_by;
+    LocalCreatedAt      = local_created_at;
+    LocalLastChangedBy  = local_last_changed_by;
+    LocalLastChangedAt  = local_last_changed_at;
+  }
+}
+
+define behavior for ZBMR_I_ITM_22IT018 alias MaintItem
+  implementation in class zbp_bmr_itm_22it018 unique
+  draft table zbmr_t_itm
+  lock dependent by _MaintHeader
+  authorization dependent by _MaintHeader
+  etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly : update, mandatory : create ) ItemNumber;
+  field ( readonly ) RequestNo;
+
+  association _MaintHeader { with draft; }
+
+  mapping for zbmr_itm_22it018 {
+    RequestNo           = requestno;
+    ItemNumber          = itemnumber;
+    WorkType            = worktype;
+    WorkerAssigned      = workerassigned;
+    SparePartNo         = sparepartno;
+    SpareDescription    = sparedescription;
+    Quantity            = quantity;
+    Uom                 = uom;
+    ItemCost            = itemcost;
+    Currency            = currency;
+    LocalCreatedBy      = local_created_by;
+    LocalCreatedAt      = local_created_at;
+    LocalLastChangedBy  = local_last_changed_by;
+    LocalLastChangedAt  = local_last_changed_at;
+  }
+}
